@@ -11,9 +11,6 @@ internal class Entity
     private bool IsDeleted { get; set; }
 
     private bool IsActive { get; set; }
-
-    private bool IsBeingEdited { get; set; }
-
     private bool IsHistory { get; set; }
 
     internal T ShallowCopy<T>()
