@@ -8,19 +8,22 @@ namespace Popkultulista.Controllers
         // GET: ItemController
         public ActionResult Index()
         {
+            ViewData["ItemName"] = "Itemek";
             return View();
         }
 
         // GET: ItemController/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.ItemTitle = "Szczegóły";
             return View();
         }
 
         // GET: ItemController/Create
         public ActionResult Create()
         {
-            return View();
+            string title = "Dodawanie";
+            return View("Create", title);
         }
 
         // POST: ItemController/Create
