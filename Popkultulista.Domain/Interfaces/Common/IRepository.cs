@@ -13,5 +13,5 @@ public interface IRepository
     /// Checking if the repository is empty.
     /// </summary>
     /// <returns>A value indicating whether the repository is empty.</returns>
-    public Task<bool> IsEmpty();
+    public Task<bool> IsEmptyAsync();
 }

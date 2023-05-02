@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# XML Documentations
+Popkultulista/Popkultulista.xml
+Popkultulista.Application/Popkultulista.Application.xml
+Popkultulista.Domain/Popkultulista.Domain.xml
+Popkultulista.Infrastructure/Popkultulista.Infrastructure.xml
+Popkultulista.Test/Popkultulista.Test.xml
