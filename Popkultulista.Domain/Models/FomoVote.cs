@@ -5,6 +5,7 @@
 namespace Popkultulista.Domain.Models;
 
 using Popkultulista.Domain.Models.Common;
+using Popkultulista.Domain.Models.Identity;
 
 /// <summary>
 /// A class representing a Fomo Vote made on a <see cref="FomoItem"/>.
@@ -16,13 +17,17 @@ public class FomoVote : Entity
     /// </summary>
     /// <param name="fomoItem">A <see cref="FomoItem"/> on which this <see cref="FomoVote"/> was made.</param>
     /// <param name="value">Value of the <see cref="FomoVote"/>.</param>
-    public FomoVote(FomoItem fomoItem, int value)
+    /// <param name="user">User who made this <see cref="FomoVote"/>.</param>
+    public FomoVote(FomoItem fomoItem, int value, User user)
     {
         ArgumentNullException.ThrowIfNull(fomoItem);
+        ArgumentNullException.ThrowIfNull(user);
 
         this.FomoItem = fomoItem;
         this.FomoItemId = fomoItem.Id;
         this.Value = value;
+        this.User = user;
+        this.UserId = user.Id;
     }
 
     /// <summary>
@@ -39,4 +44,14 @@ public class FomoVote : Entity
     /// Gets or sets the value of the <see cref="FomoVote"/>.
     /// </summary>
     public int Value { get; set; }
+
+    /// <summary>
+    /// Gets or sets the <see cref="User"/> who made the <see cref="Vote"/>.
+    /// </summary>
+    public User User { get; set; }
+
+    /// <summary>
+    /// Gets or sets the <see cref="Guid"/> of a User who made this <see cref="Vote"/>.
+    /// </summary>
+    public Guid UserId { get; set; }
 }

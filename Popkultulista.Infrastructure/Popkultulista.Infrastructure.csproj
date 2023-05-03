@@ -10,7 +10,7 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
-		<WarningsNotAsErrors></WarningsNotAsErrors>
+		<WarningsNotAsErrors>CA2007</WarningsNotAsErrors>
 		<DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
 	</PropertyGroup>
 
@@ -20,10 +20,6 @@
 
 	<ItemGroup>
 		<AdditionalFiles Include="stylecop.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Repositories\" />
 	</ItemGroup>
 
 	<ItemGroup>

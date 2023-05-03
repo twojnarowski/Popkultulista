@@ -17,14 +17,14 @@ public interface IItemRepository : IRepository
     /// </summary>
     /// <param name="itemId"><see cref="Guid"/> if a <see cref="Item"/>.</param>
     /// <returns>An instance of <see cref="Item"/>.</returns>
-    public Task GetItemAsync(Guid itemId);
+    public Task<Item> GetItemAsync(Guid itemId);
 
     /// <summary>
     /// Gets all <see cref="Item"/>s from a <see cref="List"/> by its <see cref="Guid"/>.
     /// </summary>
     /// <param name="listId"><see cref="Guid"/> of a <see cref="List"/>.</param>
     /// <returns>A collection of <see cref="Item"/>s.</returns>
-    public Task GetItemsFromListAsync(Guid listId);
+    public Task<IEnumerable<Item>> GetItemsFromListAsync(Guid listId);
 
     /// <summary>
     /// Adds one new <see cref="Item"/> to the database.

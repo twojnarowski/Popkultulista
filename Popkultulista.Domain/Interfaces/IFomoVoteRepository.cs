@@ -32,12 +32,12 @@ public interface IFomoVoteRepository : IRepository
     /// <param name="userId"><see cref="Guid"/> of a User.</param>
     /// <param name="fomoItemId"><see cref="Guid"/> of a <see cref="FomoItem"/>.</param>
     /// <returns>An instance of <see cref="FomoVote"/>.</returns>
-    public Task GetFomoVoteByUserAndFomoItemAsync(Guid userId, Guid fomoItemId);
+    public Task<FomoVote> GetFomoVoteByUserAndFomoItemAsync(Guid userId, Guid fomoItemId);
 
     /// <summary>
     /// Gets all <see cref="FomoVote"/>s for specified <see cref="FomoItem"/>.
     /// </summary>
     /// <param name="fomoItemId"><see cref="Guid"/> of a <see cref="FomoItem"/>.</param>
     /// <returns>A list of <see cref="FomoVote"/>s.</returns>
-    public Task GetFomoVotesAsync(Guid fomoItemId);
+    public Task<IEnumerable<FomoVote>> GetFomoVotesAsync(Guid fomoItemId);
 }

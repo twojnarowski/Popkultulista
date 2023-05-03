@@ -32,12 +32,12 @@ public interface IVoteRepository : IRepository
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <param name="itemId"><see cref="Guid"/> of an <see cref="Item"/>.</param>
     /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-    public Task GetVoteByUserAndItemAsync(Guid userId, Guid itemId);
+    public Task<Vote> GetVoteByUserAndItemAsync(Guid userId, Guid itemId);
 
     /// <summary>
     /// Gets all <see cref="Vote"/>s in the repository.
     /// </summary>
     /// <param name="itemId"><see cref="Guid"/> of an <see cref="Item"/>.</param>
     /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-    public Task GetVotesAsync(Guid itemId);
+    public Task<IEnumerable<Vote>> GetVotesAsync(Guid itemId);
 }

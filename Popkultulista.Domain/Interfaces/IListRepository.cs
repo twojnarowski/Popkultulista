@@ -24,7 +24,7 @@ public interface IListRepository : IRepository
     /// </summary>
     /// <param name="listId"><see cref="Guid"/> of a <see cref="List"/>.</param>
     /// <returns>An instance of an existing <see cref="List"/>.</returns>
-    public Task GetListAsync(Guid listId);
+    public Task<List> GetListAsync(Guid listId);
 
     /// <summary>
     /// Removes an existing <see cref="List"/> from the database.
@@ -45,11 +45,11 @@ public interface IListRepository : IRepository
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <returns>A list of <see cref="List"/>s.</returns>
-    public Task GetListsForUserAsync(Guid userId);
+    public Task<IEnumerable<List>> GetListsForUserAsync(Guid userId);
 
     /// <summary>
     /// Gets all <see cref="List"/>s.
     /// </summary>
     /// <returns>A list of <see cref="List"/>s.</returns>
-    public Task BrowseListsAsync();
+    public Task<IEnumerable<List>> BrowseListsAsync();
 }

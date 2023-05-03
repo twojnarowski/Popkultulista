@@ -17,14 +17,14 @@ public interface IFomoItemRepository : IRepository
     /// </summary>
     /// <param name="fomoItemId"><see cref="Guid"/> if a <see cref="FomoItem"/>.</param>
     /// <returns>An instance of <see cref="FomoItem"/>.</returns>
-    public Task GetFomoItemAsync(Guid fomoItemId);
+    public Task<FomoItem> GetFomoItemAsync(Guid fomoItemId);
 
     /// <summary>
     /// Gets all <see cref="FomoItem"/>s from a <see cref="FomoList"/> by its <see cref="Guid"/>.
     /// </summary>
     /// <param name="fomoListId"><see cref="Guid"/> if a <see cref="FomoList"/>.</param>
     /// <returns>A collection of <see cref="FomoItem"/>s.</returns>
-    public Task GetFomoItemsFromFomoListAsync(Guid fomoListId);
+    public Task<IEnumerable<FomoItem>> GetFomoItemsFromFomoListAsync(Guid fomoListId);
 
     /// <summary>
     /// Adds one new <see cref="FomoItem"/> to the database.

@@ -24,7 +24,7 @@ public interface IFomoListRepository : IRepository
     /// </summary>
     /// <param name="fomoListId"><see cref="Guid"/> of a <see cref="FomoList"/>.</param>
     /// <returns>An instance of an existing <see cref="FomoList"/>.</returns>
-    public Task GetFomoListAsync(Guid fomoListId);
+    public Task<FomoList> GetFomoListAsync(Guid fomoListId);
 
     /// <summary>
     /// Removes an existing <see cref="FomoList"/> from the database.
@@ -45,11 +45,11 @@ public interface IFomoListRepository : IRepository
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <returns>A list of <see cref="FomoList"/>s.</returns>
-    public Task GetFomoListsForUserAsync(Guid userId);
+    public Task<IEnumerable<FomoList>> GetFomoListsForUserAsync(Guid userId);
 
     /// <summary>
     /// Gets all <see cref="FomoList"/>s.
     /// </summary>
     /// <returns>A list of <see cref="FomoList"/>s.</returns>
-    public Task BrowseFomoListsAsync();
+    public Task<IEnumerable<FomoList>> BrowseFomoListsAsync();
 }
