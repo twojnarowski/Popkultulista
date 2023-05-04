@@ -29,4 +29,14 @@ public class User
     /// Gets or sets a username of a user.
     /// </summary>
     public string Username { get; set; }
+
+    /// <summary>
+    /// Gets the <see cref="FomoVote"/>s made on this <see cref="FomoItem"/>.
+    /// </summary>
+    public ICollection<FomoVote> FomoVotes { get; } = null!;
+
+    /// <summary>
+    /// Gets the <see cref="Vote"/>s made on this <see cref="Item"/>.
+    /// </summary>
+    public ICollection<Vote> Votes { get; } = null!;
 }

@@ -17,11 +17,20 @@ public class FomoList : NamedEntity
     /// </summary>
     /// <param name="user"><see cref="User"/> who owns this list.</param>
     public FomoList(User user)
+        : base()
     {
         ArgumentNullException.ThrowIfNull(user);
 
         this.User = user;
         this.UserId = user.Id;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FomoList"/> class.
+    /// </summary>
+    public FomoList()
+        : base()
+    {
     }
 
     /// <summary>
@@ -32,7 +41,7 @@ public class FomoList : NamedEntity
     /// <summary>
     /// Gets or sets the <see cref="User"/> who made the <see cref="Vote"/>.
     /// </summary>
-    public User User { get; set; }
+    public User User { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the <see cref="Guid"/> of a User who made this <see cref="Vote"/>.

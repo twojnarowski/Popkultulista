@@ -19,6 +19,7 @@ public class FomoVote : Entity
     /// <param name="value">Value of the <see cref="FomoVote"/>.</param>
     /// <param name="user">User who made this <see cref="FomoVote"/>.</param>
     public FomoVote(FomoItem fomoItem, int value, User user)
+        : base()
     {
         ArgumentNullException.ThrowIfNull(fomoItem);
         ArgumentNullException.ThrowIfNull(user);
@@ -31,9 +32,17 @@ public class FomoVote : Entity
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="FomoVote"/> class.
+    /// </summary>
+    public FomoVote()
+        : base()
+    {
+    }
+
+    /// <summary>
     /// Gets or sets the <see cref="FomoItem"/> on which this <see cref="FomoVote"/> was made.
     /// </summary>
-    public FomoItem FomoItem { get; set; }
+    public FomoItem FomoItem { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the <see cref="Guid"/> of the <see cref="FomoItem"/> on which this <see cref="FomoVote"/> was made.
@@ -46,12 +55,12 @@ public class FomoVote : Entity
     public int Value { get; set; }
 
     /// <summary>
-    /// Gets or sets the <see cref="User"/> who made the <see cref="Vote"/>.
+    /// Gets or sets the <see cref="User"/> who made the <see cref="FomoVote"/>.
     /// </summary>
-    public User User { get; set; }
+    public User User { get; set; } = null!;
 
     /// <summary>
-    /// Gets or sets the <see cref="Guid"/> of a User who made this <see cref="Vote"/>.
+    /// Gets or sets the <see cref="Guid"/> of a User who made this <see cref="FomoVote"/>.
     /// </summary>
     public Guid UserId { get; set; }
 }

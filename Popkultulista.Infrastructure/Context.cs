@@ -63,5 +63,29 @@ public class Context : DbContext
         modelBuilder?.Entity<FomoItem>().ToTable("FomoItems", x => x.IsTemporal());
         modelBuilder?.Entity<List>().ToTable("Lists", x => x.IsTemporal());
         modelBuilder?.Entity<FomoList>().ToTable("FomoLists", x => x.IsTemporal());
+
+        modelBuilder?.Entity<FomoVote>()
+                     .HasOne(fv => fv.User)
+                     .WithMany(u => u.FomoVotes)
+                     .HasForeignKey(fv => fv.UserId)
+                     .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder?.Entity<FomoVote>()
+                     .HasOne(fv => fv.FomoItem)
+                     .WithMany(fi => fi.FomoVotes)
+                     .HasForeignKey(fv => fv.FomoItemId)
+                     .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder?.Entity<Vote>()
+                     .HasOne(fv => fv.User)
+                     .WithMany(u => u.Votes)
+                     .HasForeignKey(fv => fv.UserId)
+                     .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder?.Entity<Vote>()
+                     .HasOne(fv => fv.Item)
+                     .WithMany(fi => fi.Votes)
+                     .HasForeignKey(fv => fv.ItemId)
+                     .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -98,11 +98,11 @@ public class ListRepository : Repository, IListRepository
     }
 
     /// <summary>
-    /// Checks if the <see cref="ItemRepository"/> is empty.
+    /// Checks if the <see cref="ListRepository"/> is empty.
     /// </summary>
-    /// <returns>Emptiness of <see cref="ItemRepository"/>.</returns>
+    /// <returns>Emptiness of <see cref="ListRepository"/>.</returns>
     public async Task<bool> IsEmptyAsync()
     {
-        return !(await this.Context.Items.AnyAsync());
+        return !(await this.Context.Lists.AnyAsync());
     }
 }

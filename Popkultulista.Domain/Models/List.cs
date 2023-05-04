@@ -28,6 +28,14 @@ public class List : NamedEntity
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="List"/> class.
+    /// </summary>
+    public List()
+        : base()
+    {
+    }
+
+    /// <summary>
     /// Gets a collection of <see cref="Item"/>s on this list.
     /// </summary>
     public ICollection<Item> Items { get; } = null!;
@@ -40,7 +48,7 @@ public class List : NamedEntity
     /// <summary>
     /// Gets or sets the <see cref="User"/> who made the <see cref="Vote"/>.
     /// </summary>
-    public User User { get; set; }
+    public User User { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the <see cref="Guid"/> of a User who made this <see cref="Vote"/>.

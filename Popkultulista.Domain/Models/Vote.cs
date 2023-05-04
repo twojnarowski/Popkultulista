@@ -32,9 +32,17 @@ public class Vote : Entity
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Vote"/> class.
+    /// </summary>
+    public Vote()
+        : base()
+    {
+    }
+
+    /// <summary>
     /// Gets or sets the <see cref="Item"/> for which the Vote is.
     /// </summary>
-    public Item Item { get; set; }
+    public Item Item { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the <see cref="Guid"/> of the <see cref="Item"/> for which the Vote is.
@@ -44,7 +52,7 @@ public class Vote : Entity
     /// <summary>
     /// Gets or sets the <see cref="User"/> who made the <see cref="Vote"/>.
     /// </summary>
-    public User User { get; set; }
+    public User User { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the <see cref="Guid"/> of a User who made this <see cref="Vote"/>.

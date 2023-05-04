@@ -31,9 +31,17 @@ public class FomoItem : NamedEntity
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="FomoItem"/> class.
+    /// </summary>
+    private FomoItem()
+        : base()
+    {
+    }
+
+    /// <summary>
     /// Gets or sets the <see cref="FomoList"/> to which this <see cref="FomoItem"/> belongs.
     /// </summary>
-    public FomoList FomoList { get; set; }
+    public FomoList FomoList { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the <see cref="Guid"/> of the <see cref="FomoList"/> to which this <see cref="FomoItem"/> belongs.

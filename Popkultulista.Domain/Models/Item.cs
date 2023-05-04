@@ -26,9 +26,17 @@ public class Item : NamedEntity
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Item"/> class.
+    /// </summary>
+    public Item()
+        : base()
+    {
+    }
+
+    /// <summary>
     /// Gets or sets the <see cref="List"/> to which this <see cref="Item"/> belongs.
     /// </summary>
-    public List List { get; set; }
+    public List List { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the <see cref="Guid"/> of the <see cref="List"/> to which this <see cref="Item"/> belongs.
