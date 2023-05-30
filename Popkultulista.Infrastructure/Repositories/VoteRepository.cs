@@ -72,9 +72,10 @@ public class VoteRepository : Repository, IVoteRepository
     /// </summary>
     /// <param name="itemId"><see cref="Guid"/> of an <see cref="Item"/>.</param>
     /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-    public async Task<IEnumerable<Vote>> GetVotesAsync(Guid itemId)
+    public async Task<IQueryable<Vote>> GetVotesAsync(Guid itemId)
     {
-        return await this.Context.Votes.Where(x => x.ItemId == itemId).ToListAsync();
+        var votes = this.Context.Votes.Where(x => x.ItemId == itemId);
+        return await Task.FromResult(votes.AsQueryable());
     }
 
     /// <summary>

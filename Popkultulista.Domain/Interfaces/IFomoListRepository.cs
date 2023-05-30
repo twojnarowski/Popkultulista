@@ -45,11 +45,11 @@ public interface IFomoListRepository : IRepository
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <returns>A list of <see cref="FomoList"/>s.</returns>
-    public Task<IEnumerable<FomoList>> GetFomoListsForUserAsync(Guid userId);
+    public Task<IQueryable<FomoList>> GetFomoListsForUserAsync(Guid userId);
 
     /// <summary>
     /// Gets all <see cref="FomoList"/>s.
     /// </summary>
     /// <returns>A list of <see cref="FomoList"/>s.</returns>
-    public Task<IEnumerable<FomoList>> BrowseFomoListsAsync();
+    public Task<IQueryable<FomoList>> BrowseFomoListsAsync();
 }

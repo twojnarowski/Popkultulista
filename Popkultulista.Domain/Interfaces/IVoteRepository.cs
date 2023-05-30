@@ -39,5 +39,5 @@ public interface IVoteRepository : IRepository
     /// </summary>
     /// <param name="itemId"><see cref="Guid"/> of an <see cref="Item"/>.</param>
     /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-    public Task<IEnumerable<Vote>> GetVotesAsync(Guid itemId);
+    public Task<IQueryable<Vote>> GetVotesAsync(Guid itemId);
 }

@@ -39,5 +39,5 @@ public interface IFomoVoteRepository : IRepository
     /// </summary>
     /// <param name="fomoItemId"><see cref="Guid"/> of a <see cref="FomoItem"/>.</param>
     /// <returns>A list of <see cref="FomoVote"/>s.</returns>
-    public Task<IEnumerable<FomoVote>> GetFomoVotesAsync(Guid fomoItemId);
+    public Task<IQueryable<FomoVote>> GetFomoVotesAsync(Guid fomoItemId);
 }

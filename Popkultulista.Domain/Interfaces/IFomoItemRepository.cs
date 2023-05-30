@@ -24,7 +24,7 @@ public interface IFomoItemRepository : IRepository
     /// </summary>
     /// <param name="fomoListId"><see cref="Guid"/> if a <see cref="FomoList"/>.</param>
     /// <returns>A collection of <see cref="FomoItem"/>s.</returns>
-    public Task<IEnumerable<FomoItem>> GetFomoItemsFromFomoListAsync(Guid fomoListId);
+    public Task<IQueryable<FomoItem>> GetFomoItemsFromFomoListAsync(Guid fomoListId);
 
     /// <summary>
     /// Adds one new <see cref="FomoItem"/> to the database.

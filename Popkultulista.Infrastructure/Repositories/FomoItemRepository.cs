@@ -44,9 +44,10 @@ public class FomoItemRepository : Repository, IFomoItemRepository
     /// </summary>
     /// <param name="fomoListId">The <see cref="Guid"/> of the <see cref="FomoList"/> to get <see cref="FomoItem"/>s from.</param>
     /// <returns>A collection of <see cref="FomoItem"/>s.</returns>
-    public async Task<IEnumerable<FomoItem>> GetFomoItemsFromFomoListAsync(Guid fomoListId)
+    public async Task<IQueryable<FomoItem>> GetFomoItemsFromFomoListAsync(Guid fomoListId)
     {
-        return await this.Context.FomoItems.Where(i => i.Id == fomoListId).ToListAsync();
+        var fomoItems = this.Context.FomoItems.Where(i => i.Id == fomoListId);
+        return await Task.FromResult(fomoItems.AsQueryable());
     }
 
     /// <summary>

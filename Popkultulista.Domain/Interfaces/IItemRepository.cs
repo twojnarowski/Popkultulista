@@ -24,7 +24,7 @@ public interface IItemRepository : IRepository
     /// </summary>
     /// <param name="listId"><see cref="Guid"/> of a <see cref="List"/>.</param>
     /// <returns>A collection of <see cref="Item"/>s.</returns>
-    public Task<IEnumerable<Item>> GetItemsFromListAsync(Guid listId);
+    public Task<IQueryable<Item>> GetItemsFromListAsync(Guid listId);
 
     /// <summary>
     /// Adds one new <see cref="Item"/> to the database.

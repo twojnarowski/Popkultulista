@@ -7,6 +7,7 @@ namespace Popkultulista.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Popkultulista.Domain.Interfaces;
 using Popkultulista.Domain.Models;
+using Popkultulista.Domain.Models.Identity;
 using Popkultulista.Infrastructure.Repositories.Common;
 
 /// <summary>
@@ -72,9 +73,10 @@ public class FomoVoteRepository : Repository, IFomoVoteRepository
     /// </summary>
     /// <param name="fomoItemId"><see cref="Guid"/> of an <see cref="FomoItem"/>.</param>
     /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-    public async Task<IEnumerable<FomoVote>> GetFomoVotesAsync(Guid fomoItemId)
+    public async Task<IQueryable<FomoVote>> GetFomoVotesAsync(Guid fomoItemId)
     {
-        return await this.Context.FomoVotes.Where(x => x.FomoItemId == fomoItemId).ToListAsync();
+        var fomoVotes = this.Context.FomoVotes.Where(x => x.FomoItemId == fomoItemId);
+        return await Task.FromResult(fomoVotes.AsQueryable());
     }
 
     /// <summary>

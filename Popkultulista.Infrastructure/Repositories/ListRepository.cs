@@ -83,18 +83,20 @@ public class ListRepository : Repository, IListRepository
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <returns>A list of <see cref="List"/>s.</returns>
-    public async Task<IEnumerable<List>> GetListsForUserAsync(Guid userId)
+    public async Task<IQueryable<List>> GetListsForUserAsync(Guid userId)
     {
-        return await this.Context.Lists.Where(i => i.UserId == userId).ToListAsync();
+        var lists = this.Context.Lists.Where(i => i.UserId == userId);
+        return await Task.FromResult(lists.AsQueryable());
     }
 
     /// <summary>
     /// Gets all <see cref="List"/>s.
     /// </summary>
     /// <returns>A list of <see cref="List"/>s.</returns>
-    public async Task<IEnumerable<List>> BrowseListsAsync()
+    public async Task<IQueryable<List>> BrowseListsAsync()
     {
-        return await this.Context.Lists.ToListAsync();
+        var lists = this.Context.Lists;
+        return await Task.FromResult(lists.AsQueryable());
     }
 
     /// <summary>

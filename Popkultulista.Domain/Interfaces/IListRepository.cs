@@ -45,11 +45,11 @@ public interface IListRepository : IRepository
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <returns>A list of <see cref="List"/>s.</returns>
-    public Task<IEnumerable<List>> GetListsForUserAsync(Guid userId);
+    public Task<IQueryable<List>> GetListsForUserAsync(Guid userId);
 
     /// <summary>
     /// Gets all <see cref="List"/>s.
     /// </summary>
     /// <returns>A list of <see cref="List"/>s.</returns>
-    public Task<IEnumerable<List>> BrowseListsAsync();
+    public Task<IQueryable<List>> BrowseListsAsync();
 }

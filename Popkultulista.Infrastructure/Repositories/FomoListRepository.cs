@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Popkultulista.Domain.Interfaces;
 using Popkultulista.Domain.Models;
+using Popkultulista.Domain.Models.Identity;
 using Popkultulista.Infrastructure;
 using Popkultulista.Infrastructure.Repositories.Common;
 
@@ -84,18 +85,20 @@ public class FomoListRepository : Repository, IFomoListRepository
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <returns>A fomoList of <see cref="FomoList"/>s.</returns>
-    public async Task<IEnumerable<FomoList>> GetFomoListsForUserAsync(Guid userId)
+    public async Task<IQueryable<FomoList>> GetFomoListsForUserAsync(Guid userId)
     {
-        return await this.Context.FomoLists.Where(i => i.UserId == userId).ToListAsync();
+        var fomoLists = this.Context.FomoLists.Where(i => i.UserId == userId);
+        return await Task.FromResult(fomoLists.AsQueryable());
     }
 
     /// <summary>
     /// Gets all <see cref="FomoList"/>s.
     /// </summary>
     /// <returns>A fomoList of <see cref="FomoList"/>s.</returns>
-    public async Task<IEnumerable<FomoList>> BrowseFomoListsAsync()
+    public async Task<IQueryable<FomoList>> BrowseFomoListsAsync()
     {
-        return await this.Context.FomoLists.ToListAsync();
+        var fomoLists = this.Context.FomoLists;
+        return await Task.FromResult(fomoLists.AsQueryable());
     }
 
     /// <summary>

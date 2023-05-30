@@ -44,9 +44,10 @@ public class ItemRepository : Repository, IItemRepository
     /// </summary>
     /// <param name="listId">The <see cref="Guid"/> of the <see cref="List"/> to get <see cref="Item"/>s from.</param>
     /// <returns>A collection of <see cref="Item"/>s.</returns>
-    public async Task<IEnumerable<Item>> GetItemsFromListAsync(Guid listId)
+    public async Task<IQueryable<Item>> GetItemsFromListAsync(Guid listId)
     {
-        return await this.Context.Items.Where(i => i.ListId == listId).ToListAsync();
+        var items = this.Context.Items.Where(i => i.ListId == listId);
+        return await Task.FromResult(items.AsQueryable());
     }
 
     /// <summary>
