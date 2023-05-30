@@ -16,23 +16,26 @@ public interface IFomoVoteRepository : IRepository
     /// Adds a new <see cref="FomoVote"/> to the database.
     /// </summary>
     /// <param name="fomoVote">A new instance of <see cref="FomoVote"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed Task.</returns>
-    public Task AddFomoVoteAsync(FomoVote fomoVote);
+    public Task AddFomoVoteAsync(FomoVote fomoVote, CancellationToken cancellationToken);
 
     /// <summary>
     /// Removes an existing <see cref="FomoVote"/> from the database.
     /// </summary>
     /// <param name="fomoVoteId"><see cref="Guid"/> of a <see cref="FomoVote"/> to be deleted.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public Task DeleteFomoVoteAsync(Guid fomoVoteId);
+    public Task DeleteFomoVoteAsync(Guid fomoVoteId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets a <see cref="FomoVote"/> made by a specified user for given <see cref="FomoItem"/>.
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a User.</param>
     /// <param name="fomoItemId"><see cref="Guid"/> of a <see cref="FomoItem"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>An instance of <see cref="FomoVote"/>.</returns>
-    public Task<FomoVote> GetFomoVoteByUserAndFomoItemAsync(Guid userId, Guid fomoItemId);
+    public Task<FomoVote> GetFomoVoteByUserAndFomoItemAsync(Guid userId, Guid fomoItemId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets all <see cref="FomoVote"/>s for specified <see cref="FomoItem"/>.

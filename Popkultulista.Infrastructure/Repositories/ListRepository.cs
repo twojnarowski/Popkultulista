@@ -4,7 +4,6 @@
 
 namespace Popkultulista.Infrastructure.Repositories;
 
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Popkultulista.Domain.Interfaces;
 using Popkultulista.Domain.Models;
@@ -28,21 +27,23 @@ public class ListRepository : Repository, IListRepository
     /// Adds a new <see cref="List"/> to the database.
     /// </summary>
     /// <param name="list">A new instance of <see cref="List"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public async Task AddListAsync(List list)
+    public async Task AddListAsync(List list, CancellationToken cancellationToken)
     {
         this.Context.Lists.Add(list);
-        await this.Context.SaveChangesAsync();
+        await this.Context.SaveChangesAsync(cancellationToken);
     }
 
     /// <summary>
     /// Gets a specific <see cref="List"/> by given <see cref="Guid"/>.
     /// </summary>
     /// <param name="listId"><see cref="Guid"/> of a <see cref="List"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>An instance of an existing <see cref="List"/>.</returns>
-    public async Task<List> GetListAsync(Guid listId)
+    public async Task<List> GetListAsync(Guid listId, CancellationToken cancellationToken)
     {
-        var list = await this.Context.Lists.FirstOrDefaultAsync(x => x.Id == listId);
+        var list = await this.Context.Lists.FirstOrDefaultAsync(x => x.Id == listId, cancellationToken);
         if (list is null)
         {
             throw new InvalidOperationException($"List with id {listId} not found");
@@ -55,15 +56,16 @@ public class ListRepository : Repository, IListRepository
     /// Removes an existing <see cref="List"/> from the database.
     /// </summary>
     /// <param name="listId"><see cref="Guid"/> of a <see cref="List"/> to be removed.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public async Task DeleteListAsync(Guid listId)
+    public async Task DeleteListAsync(Guid listId, CancellationToken cancellationToken)
     {
-        var list = await this.Context.Lists.FirstOrDefaultAsync(i => i.Id == listId);
+        var list = await this.Context.Lists.FirstOrDefaultAsync(i => i.Id == listId, cancellationToken);
 
         if (list != null)
         {
             this.Context.Lists.Remove(list);
-            await this.Context.SaveChangesAsync();
+            await this.Context.SaveChangesAsync(cancellationToken);
         }
     }
 
@@ -71,11 +73,12 @@ public class ListRepository : Repository, IListRepository
     /// Updates an existing <see cref="List"/> in the database.
     /// </summary>
     /// <param name="list">An updated <see cref="List"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public async Task UpdateListAsync(List list)
+    public async Task UpdateListAsync(List list, CancellationToken cancellationToken)
     {
         this.Context.Lists.Update(list);
-        await this.Context.SaveChangesAsync();
+        await this.Context.SaveChangesAsync(cancellationToken);
     }
 
     /// <summary>
@@ -102,9 +105,10 @@ public class ListRepository : Repository, IListRepository
     /// <summary>
     /// Checks if the <see cref="ListRepository"/> is empty.
     /// </summary>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>Emptiness of <see cref="ListRepository"/>.</returns>
-    public async Task<bool> IsEmptyAsync()
+    public async Task<bool> IsEmptyAsync(CancellationToken cancellationToken)
     {
-        return !(await this.Context.Lists.AnyAsync());
+        return !(await this.Context.Lists.AnyAsync(cancellationToken));
     }
 }

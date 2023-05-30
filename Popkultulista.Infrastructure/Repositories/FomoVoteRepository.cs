@@ -7,7 +7,6 @@ namespace Popkultulista.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Popkultulista.Domain.Interfaces;
 using Popkultulista.Domain.Models;
-using Popkultulista.Domain.Models.Identity;
 using Popkultulista.Infrastructure.Repositories.Common;
 
 /// <summary>
@@ -28,26 +27,28 @@ public class FomoVoteRepository : Repository, IFomoVoteRepository
     /// Adding a new FomoVote to the repository.
     /// </summary>
     /// <param name="fomoVote">A new <see cref="FomoVote"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-    public async Task AddFomoVoteAsync(FomoVote fomoVote)
+    public async Task AddFomoVoteAsync(FomoVote fomoVote, CancellationToken cancellationToken)
     {
-        await this.Context.FomoVotes.AddAsync(fomoVote);
-        await this.Context.SaveChangesAsync();
+        await this.Context.FomoVotes.AddAsync(fomoVote, cancellationToken);
+        await this.Context.SaveChangesAsync(cancellationToken);
     }
 
     /// <summary>
     /// Removing a <see cref="FomoVote"/>. from the repository.
     /// </summary>
     /// <param name="fomoVoteId"><see cref="Guid"/> of a <see cref="FomoVote"/> to be deleted.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-    public async Task DeleteFomoVoteAsync(Guid fomoVoteId)
+    public async Task DeleteFomoVoteAsync(Guid fomoVoteId, CancellationToken cancellationToken)
     {
-        var fomoVote = await this.Context.FomoVotes.FirstOrDefaultAsync(i => i.Id == fomoVoteId);
+        var fomoVote = await this.Context.FomoVotes.FirstOrDefaultAsync(i => i.Id == fomoVoteId, cancellationToken);
 
         if (fomoVote != null)
         {
             this.Context.FomoVotes.Remove(fomoVote);
-            await this.Context.SaveChangesAsync();
+            await this.Context.SaveChangesAsync(cancellationToken);
         }
     }
 
@@ -56,10 +57,11 @@ public class FomoVoteRepository : Repository, IFomoVoteRepository
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <param name="fomoItemId"><see cref="Guid"/> of an <see cref="FomoItem"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
-    public async Task<FomoVote> GetFomoVoteByUserAndFomoItemAsync(Guid userId, Guid fomoItemId)
+    public async Task<FomoVote> GetFomoVoteByUserAndFomoItemAsync(Guid userId, Guid fomoItemId, CancellationToken cancellationToken)
     {
-        var fomoVote = await this.Context.FomoVotes.Where(x => x.UserId == userId).FirstOrDefaultAsync(i => i.FomoItemId == fomoItemId);
+        var fomoVote = await this.Context.FomoVotes.Where(x => x.UserId == userId).FirstOrDefaultAsync(i => i.FomoItemId == fomoItemId, cancellationToken);
         if (fomoVote is null)
         {
             throw new InvalidOperationException($"FomoVote not found");
@@ -82,9 +84,10 @@ public class FomoVoteRepository : Repository, IFomoVoteRepository
     /// <summary>
     /// Checks if the <see cref="FomoVoteRepository"/> is empty.
     /// </summary>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>Emptiness of <see cref="FomoVoteRepository"/>.</returns>
-    public async Task<bool> IsEmptyAsync()
+    public async Task<bool> IsEmptyAsync(CancellationToken cancellationToken)
     {
-        return !(await this.Context.FomoVotes.AnyAsync());
+        return !(await this.Context.FomoVotes.AnyAsync(cancellationToken));
     }
 }

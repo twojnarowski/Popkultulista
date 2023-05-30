@@ -4,11 +4,9 @@
 
 namespace PopkultufomoLista.Infrastructure.Repositories;
 
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Popkultulista.Domain.Interfaces;
 using Popkultulista.Domain.Models;
-using Popkultulista.Domain.Models.Identity;
 using Popkultulista.Infrastructure;
 using Popkultulista.Infrastructure.Repositories.Common;
 
@@ -30,21 +28,23 @@ public class FomoListRepository : Repository, IFomoListRepository
     /// Adds a new <see cref="FomoList"/> to the database.
     /// </summary>
     /// <param name="fomoList">A new instance of <see cref="FomoList"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public async Task AddFomoListAsync(FomoList fomoList)
+    public async Task AddFomoListAsync(FomoList fomoList, CancellationToken cancellationToken)
     {
         this.Context.FomoLists.Add(fomoList);
-        await this.Context.SaveChangesAsync();
+        await this.Context.SaveChangesAsync(cancellationToken);
     }
 
     /// <summary>
     /// Gets a specific <see cref="FomoList"/> by given <see cref="Guid"/>.
     /// </summary>
     /// <param name="fomoListId"><see cref="Guid"/> of a <see cref="FomoList"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>An instance of an existing <see cref="FomoList"/>.</returns>
-    public async Task<FomoList> GetFomoListAsync(Guid fomoListId)
+    public async Task<FomoList> GetFomoListAsync(Guid fomoListId, CancellationToken cancellationToken)
     {
-        var fomoList = await this.Context.FomoLists.FirstOrDefaultAsync(x => x.Id == fomoListId);
+        var fomoList = await this.Context.FomoLists.FirstOrDefaultAsync(x => x.Id == fomoListId, cancellationToken);
         if (fomoList is null)
         {
             throw new InvalidOperationException($"FomoList with id {fomoListId} not found");
@@ -57,15 +57,16 @@ public class FomoListRepository : Repository, IFomoListRepository
     /// Removes an existing <see cref="FomoList"/> from the database.
     /// </summary>
     /// <param name="fomoListId"><see cref="Guid"/> of a <see cref="FomoList"/> to be removed.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public async Task DeleteFomoListAsync(Guid fomoListId)
+    public async Task DeleteFomoListAsync(Guid fomoListId, CancellationToken cancellationToken)
     {
-        var fomoList = await this.Context.FomoLists.FirstOrDefaultAsync(i => i.Id == fomoListId);
+        var fomoList = await this.Context.FomoLists.FirstOrDefaultAsync(i => i.Id == fomoListId, cancellationToken);
 
         if (fomoList != null)
         {
             this.Context.FomoLists.Remove(fomoList);
-            await this.Context.SaveChangesAsync();
+            await this.Context.SaveChangesAsync(cancellationToken);
         }
     }
 
@@ -73,11 +74,12 @@ public class FomoListRepository : Repository, IFomoListRepository
     /// Updates an existing <see cref="FomoList"/> in the database.
     /// </summary>
     /// <param name="fomoList">An updated <see cref="FomoList"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public async Task UpdateFomoListAsync(FomoList fomoList)
+    public async Task UpdateFomoListAsync(FomoList fomoList, CancellationToken cancellationToken)
     {
         this.Context.FomoLists.Update(fomoList);
-        await this.Context.SaveChangesAsync();
+        await this.Context.SaveChangesAsync(cancellationToken);
     }
 
     /// <summary>
@@ -104,9 +106,10 @@ public class FomoListRepository : Repository, IFomoListRepository
     /// <summary>
     /// Checks if the <see cref="FomoListRepository"/> is empty.
     /// </summary>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>Emptiness of <see cref="FomoListRepository"/>.</returns>
-    public async Task<bool> IsEmptyAsync()
+    public async Task<bool> IsEmptyAsync(CancellationToken cancellationToken)
     {
-        return !(await this.Context.FomoLists.AnyAsync());
+        return !(await this.Context.FomoLists.AnyAsync(cancellationToken));
     }
 }

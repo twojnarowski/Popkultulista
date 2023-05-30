@@ -12,6 +12,7 @@ public interface IRepository
     /// <summary>
     /// Checking if the repository is empty.
     /// </summary>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A value indicating whether the repository is empty.</returns>
-    public Task<bool> IsEmptyAsync();
+    public Task<bool> IsEmptyAsync(CancellationToken cancellationToken);
 }

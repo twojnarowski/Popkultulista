@@ -16,29 +16,33 @@ public interface IListRepository : IRepository
     /// Adds a new <see cref="List"/> to the database.
     /// </summary>
     /// <param name="list">A new instance of <see cref="List"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public Task AddListAsync(List list);
+    public Task AddListAsync(List list, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets a specific <see cref="List"/> by given <see cref="Guid"/>.
     /// </summary>
     /// <param name="listId"><see cref="Guid"/> of a <see cref="List"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>An instance of an existing <see cref="List"/>.</returns>
-    public Task<List> GetListAsync(Guid listId);
+    public Task<List> GetListAsync(Guid listId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Removes an existing <see cref="List"/> from the database.
     /// </summary>
     /// <param name="listId"><see cref="Guid"/> of a <see cref="List"/> to be removed.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public Task DeleteListAsync(Guid listId);
+    public Task DeleteListAsync(Guid listId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Updates an existing <see cref="List"/> in the database.
     /// </summary>
     /// <param name="list">An updated <see cref="List"/>.</param>
+    /// <param name="cancellationToken">Token for cancelling long tasks.</param>
     /// <returns>A completed task.</returns>
-    public Task UpdateListAsync(List list);
+    public Task UpdateListAsync(List list, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets all <see cref="List"/>s for a user.
