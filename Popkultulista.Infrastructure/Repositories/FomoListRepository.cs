@@ -2,7 +2,7 @@
 // Copyright (c) tymonello. All rights reserved.
 // </copyright>
 
-namespace PopkultufomoLista.Infrastructure.Repositories;
+namespace Popkultulista.Infrastructure.Repositories;
 
 using Microsoft.EntityFrameworkCore;
 using Popkultulista.Domain.Interfaces;

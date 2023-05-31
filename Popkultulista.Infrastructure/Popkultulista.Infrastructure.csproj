@@ -10,7 +10,7 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
-		<WarningsNotAsErrors>CA2007</WarningsNotAsErrors>
+		<WarningsNotAsErrors>CA2007,CA1724</WarningsNotAsErrors>
 		<DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
 	</PropertyGroup>
 

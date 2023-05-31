@@ -10,13 +10,9 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
-		<WarningsNotAsErrors></WarningsNotAsErrors>
+		<WarningsNotAsErrors>CA1040,S2094,CA1724</WarningsNotAsErrors>
 		<DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Folder Include="Services\" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Popkultulista.Domain\Popkultulista.Domain.csproj" />
