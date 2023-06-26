@@ -17,10 +17,10 @@ public class FomoListVM
     /// <summary>
     /// Gets or sets the name of a <see cref="FomoList"/>.
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets a list of <see cref="FomoItemForListVM"/>s.
     /// </summary>
-    public List<FomoItemForListVM> FomoItems { get; set; }
+    public ICollection<FomoItemForListVM>? FomoItems { get; }
 }

@@ -14,5 +14,5 @@ public class NewFomoListVM
     /// <summary>
     /// Gets or sets the name of a <see cref="FomoList"/>.
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = default!;
 }

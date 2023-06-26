@@ -17,9 +17,9 @@ public class ItemForListVM
     public int Id { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of a <see cref="Item>"/>
+    /// Gets or sets the name of a <see cref="Item"/>
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets the total score of a <see cref="Item"/>

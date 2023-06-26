@@ -23,16 +23,34 @@ public class Program
 
         // Add services to the container.
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString));
-        builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<ApplicationDbContext>();
-        builder.Services.AddControllersWithViews();
+        var connectionString2 = builder.Configuration.GetConnectionString("IdentityConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
         builder.Services.AddDbContext<Context>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(connectionString));
+
+        builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                             options.UseSqlServer(connectionString2));
+
+        builder.Services.AddIdentity<IdentityUser, IdentityRole>(
+                                            options =>
+                                            {
+                                                options.SignIn.RequireConfirmedAccount = true;
+                                                options.Password.RequireDigit = true;
+                                                options.Password.RequireLowercase = true;
+                                                options.Password.RequireNonAlphanumeric = true;
+                                                options.Password.RequireUppercase = true;
+                                                options.Password.RequiredLength = 6;
+                                                options.Password.RequiredUniqueChars = 1;
+                                            })
+                                            .AddEntityFrameworkStores<ApplicationDbContext>()
+                                            .AddDefaultTokenProviders()
+                                            //.AddUserConfirmation<UserConfirmation<IdentityUser>>()
+                                            .AddDefaultUI();
+
+
+        builder.Services.AddControllersWithViews();
 
         var app = builder.Build();
 

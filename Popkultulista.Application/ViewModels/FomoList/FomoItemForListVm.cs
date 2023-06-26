@@ -19,7 +19,7 @@ public class FomoItemForListVM
     /// <summary>
     /// Gets or sets the name of a <see cref="FomoItem"/>
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets the total score of a <see cref="FomoItem"/>

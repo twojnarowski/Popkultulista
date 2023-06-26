@@ -13,7 +13,7 @@ namespace Popkultulista.Data
         /// 
         /// </summary>
         /// <param name="options"></param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {
         }

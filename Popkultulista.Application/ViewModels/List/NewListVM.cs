@@ -14,5 +14,5 @@ public class NewListVM
     /// <summary>
     /// Gets or sets the name of a <see cref="List"/>.
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = default!;
 }

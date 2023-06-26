@@ -17,10 +17,10 @@ public class EditListVM
     /// <summary>
     /// Gets or sets the name of a <see cref="FomoList"/>.
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets a list of <see cref="ItemForListVM"/>s.
     /// </summary>
-    public List<ItemForListVM> Items { get; set; }
+    public ICollection<ItemForListVM>? Items { get; }
 }
