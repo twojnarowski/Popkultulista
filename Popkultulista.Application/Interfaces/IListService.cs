@@ -11,4 +11,13 @@ using Popkultulista.Domain.Models;
 /// </summary>
 public interface IListService
 {
+    public void CreateList(List list);
+
+    public List GetList(int id);
+
+    public IEnumerable<List> GetLists();
+
+    public void DeleteList(int id);
+
+    public void UpdateList(List list);
 }

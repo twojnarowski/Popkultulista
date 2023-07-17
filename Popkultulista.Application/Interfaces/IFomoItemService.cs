@@ -11,4 +11,13 @@ using Popkultulista.Domain.Models;
 /// </summary>
 public interface IFomoItemService
 {
+    public void CreateFomoItem(FomoItem fomoItem);
+
+    public FomoItem GetFomoItem(int id);
+
+    public IEnumerable<FomoItem> GetFomoItems();
+
+    public void DeleteFomoItem(int id);
+
+    public void UpdateFomoItem(FomoItem fomoItem);
 }

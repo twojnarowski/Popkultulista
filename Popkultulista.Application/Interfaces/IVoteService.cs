@@ -11,5 +11,13 @@ using Popkultulista.Domain.Models;
 /// </summary>
 public interface IVoteService
 {
-    ////public Task<IEnumerable<Vote>> GetVotesForItem(int itemId);
+    public void CreateVote(Vote vote);
+
+    public Vote GetVote(int id);
+
+    public IEnumerable<Vote> GetVotes();
+
+    public void DeleteVote(int id);
+
+    public void UpdateVote(Vote vote);
 }

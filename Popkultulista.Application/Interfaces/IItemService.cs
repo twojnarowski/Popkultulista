@@ -7,8 +7,17 @@ namespace Popkultulista.Application.Interfaces;
 using Popkultulista.Domain.Models;
 
 /// <summary>
-/// An interface for <see cref="FomoItem"/> service.
+/// An interface for <see cref="Item"/> service.
 /// </summary>
 public interface IItemService
 {
+    public void CreateItem(Item item);
+
+    public Item GetItem(int id);
+
+    public IEnumerable<Item> GetItems();
+
+    public void DeleteItem(int id);
+
+    public void UpdateItem(Item item);
 }
