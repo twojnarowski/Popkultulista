@@ -15,6 +15,8 @@ public interface IFomoListService
 
     public FomoList GetFomoList(int id);
 
+    public Task<FomoList> GetFomoListForUserAsync(Guid id);
+
     public IEnumerable<FomoList> GetFomoLists();
 
     public void DeleteFomoList(int id);

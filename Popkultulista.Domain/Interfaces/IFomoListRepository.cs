@@ -45,11 +45,11 @@ public interface IFomoListRepository : IRepository
     public Task UpdateFomoListAsync(FomoList fomoList, CancellationToken cancellationToken);
 
     /// <summary>
-    /// Gets all <see cref="FomoList"/>s for a user.
+    /// Gets the <see cref="FomoList"/> for a user.
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
-    /// <returns>A list of <see cref="FomoList"/>s.</returns>
-    public Task<IQueryable<FomoList>> GetFomoListsForUserAsync(Guid userId);
+    /// <returns>A <see cref="FomoList"/>.</returns>
+    public Task<FomoList> GetFomoListForUserAsync(Guid userId);
 
     /// <summary>
     /// Gets all <see cref="FomoList"/>s.

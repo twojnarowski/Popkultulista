@@ -2,24 +2,19 @@
 // Copyright (c) tymonello. All rights reserved.
 // </copyright>
 
+using Microsoft.AspNetCore.Identity;
+
 namespace Popkultulista.Domain.Models.Identity;
 
 /// <summary>
 /// Temporary Role until Identity is added.
 /// </summary>
-public class Role
+public class Role : IdentityRole<Guid>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="Role"/> class.
     /// </summary>
-    /// <param name="rolename">Name of a role.</param>
-    public Role(string rolename)
+    public Role()
     {
-        this.RoleName = rolename;
     }
-
-    /// <summary>
-    /// Gets or sets the name of a role.
-    /// </summary>
-    public string RoleName { get; set; }
 }

@@ -87,10 +87,19 @@ public class FomoListRepository : Repository, IFomoListRepository
     /// </summary>
     /// <param name="userId"><see cref="Guid"/> of a user.</param>
     /// <returns>A fomoList of <see cref="FomoList"/>s.</returns>
-    public async Task<IQueryable<FomoList>> GetFomoListsForUserAsync(Guid userId)
+    public async Task<FomoList?> GetFomoListForUserAsync(Guid userId)
     {
-        var fomoLists = this.Context.FomoLists.Where(i => i.UserId == userId);
-        return await Task.FromResult(fomoLists.AsQueryable());
+        // temp
+        if (userId == Guid.Empty)
+        {
+            var fomoListstemp = await this.Context.FomoLists.FirstOrDefaultAsync();
+            return await Task.FromResult(fomoListstemp);
+        }
+        else
+        {
+            var fomoLists = await this.Context.FomoLists.FirstOrDefaultAsync(i => i.UserId == userId);
+            return await Task.FromResult(fomoLists);
+        }
     }
 
     /// <summary>

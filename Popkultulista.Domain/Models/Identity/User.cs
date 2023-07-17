@@ -5,30 +5,19 @@
 namespace Popkultulista.Domain.Models.Identity;
 
 using System;
+using Microsoft.AspNetCore.Identity;
 
 /// <summary>
 /// A temporary User until Identity is added.
 /// </summary>
-public class User
+public class User : IdentityUser<Guid>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="User"/> class.
     /// </summary>
-    /// <param name="username">Username of the user.</param>
-    public User(string username)
+    public User()
     {
-        this.Username = username;
     }
-
-    /// <summary>
-    /// Gets or sets an Id of a user.
-    /// </summary>
-    public Guid Id { get; set; }
-
-    /// <summary>
-    /// Gets or sets a username of a user.
-    /// </summary>
-    public string Username { get; set; }
 
     /// <summary>
     /// Gets the <see cref="FomoVote"/>s made on this <see cref="FomoItem"/>.
